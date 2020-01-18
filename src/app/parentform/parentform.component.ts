@@ -65,13 +65,10 @@ export class ParentformComponent implements OnInit {
   //   this.index = index;
   // }
   saveEdit(data) {
-    this.save = true;
+    this.save = !this.save;
 
     // line of codes to save and pass data to child component 
 
-
-
-    this.save = false;
   }
 
 }
