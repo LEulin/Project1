@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Project 1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container" *ngIf="parent">
+        <div class="card">
+            <div class="input">
+                <h1>Sign Up</h1>
+                <hr>
+                <form (ngSubmit)="onSubmit()" #sample="ngForm">
+                    <p>First Name: <input fname="fname" [(ngModel)]="firstname" #fname="ngModel" required [ngModelOptions]="{standalone: true}" /></p>
+                    <div *ngIf="fname.invalid && (fname.dirty || fname.touched)">
+                        <div *ngIf="fname.errors.required"> First Name is required</div>
+                    </div>
+                    <br>
+                    <p>Last Name: <input lname="lname" [(ngModel)]="lastname" #lname="ngModel" [ngModelOptions]="{standalone: true}"
+                            required /></p>
+                    <div *ngIf="lname.invalid && (lname.dirty || lname.touched)">
+                        <div *ngIf="lname.errors.required">Last Name is required</div>
+                    </div>
+                    <br>
+                    <p>Gender: <select [(ngModel)]="gender" [ngModelOptions]="{standalone: true}" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select></p>
+                    <br>
+                    <p>Email: <input email="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="emailni"
+                            #email="ngModel" [ngModelOptions]="{standalone: true}" required /></p>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email.errors.required">Email is required</div>
+                        <div *ngIf="email.errors.pattern">Email is invalid</div>
+                    </div>
+                    <br>
+                    <p>Password: <input pass="pass" [(ngModel)]="password" #pass="ngModel" type="password"
+                            [ngModelOptions]="{standalone: true}" required /></p>
+                    <div *ngIf="pass.invalid && (pass.dirty || pass.touched)">
+                        <div *ngIf="pass.errors.required">Password is required</div>
+                    </div>
+                    <br>
+                    <p>Confirm Password: <input conpass="conpass" [(ngModel)]="conpassword" #conpass="ngModel" type="password"
+                            [ngModelOptions]="{standalone: true}" required /></p>
+                    <div *ngIf="conpass.invalid && (conpass.dirty || conpass.touched)">
+                        <div *ngIf="conpass.errors.required">Password is required</div>
+                    </div>
+                    <br>
+                    <button class="btn btn-danger" [disabled]=!sample.form.valid>Submit</button>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <app-childform *ngIf="child" (formchildEvent)="informations($event)" [information]="storage"></app-childform>
+</body>
+
+</html>
