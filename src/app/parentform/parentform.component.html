@@ -54,7 +54,8 @@
                         <div *ngIf="conpass.errors.required">Password is required</div>
                     </div>
                     <br>
-                    <button class="btn btn-danger" [disabled]=!sample.form.valid>Submit</button>
+                    <button class="btn btn-danger" *ngIf="!save" [disabled]=!sample.form.valid>Submit</button>
+                    <button class="btn btn-danger" *ngIf="save">Save</button>
                     <br>
                 </form>
             </div>
@@ -63,7 +64,7 @@
 
     <br>
     <br>
-    <app-childform *ngIf="child" (formchildEvent)="informations($event)" [information]="storage"></app-childform>
+    <app-childform *ngIf="child" (formchildEvent)="saveEdit($event)" [information]="storage"></app-childform>
 </body>
 
 </html>

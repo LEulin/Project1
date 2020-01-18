@@ -20,12 +20,12 @@ export class ChildformComponent implements OnInit {
   ngOnInit() {
   }
 
-  edit(index: Number) {
+  edit(dataToEdit) {
     this.child = false;
     this.parent = true;
-    this.formchildEvent.emit(index)
-    console.log(index);
+    this.formchildEvent.emit(dataToEdit)
+    
+    console.log(dataToEdit);
   }
 
 }
-  
